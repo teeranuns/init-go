@@ -3,6 +3,7 @@ start learning golang
 
 ## Project Structure
 
+```
 project/
 ├── domain/
 │ ├── user.go
@@ -39,8 +40,10 @@ project/
 │ ├── product_usecase.go
 │ ├── receive_usecase.go
 ├── main.go
+```
 
 ## Getting Started
+- air
 
 ### Prerequisites
 
