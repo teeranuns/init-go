@@ -9,6 +9,7 @@ import (
 func ProductRoutes(e *echo.Echo) {
 	e.GET("/product/1234", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, product! 1234")
+		//addBook(c)
 	})
 
 }
