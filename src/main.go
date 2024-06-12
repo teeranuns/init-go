@@ -1,11 +1,12 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
-	"io"
+
 	"net/http"
 	"strconv"
+
+	router "init/project/src/infrastructure/routes"
 
 	"github.com/labstack/echo/v4"
 )
@@ -53,29 +54,12 @@ func getBook(c echo.Context) error {
 	return c.JSON(http.StatusNotFound, map[string]string{"error": "Book not found"})
 }
 
-func logRequestBody(c echo.Context) (*bytes.Buffer, error) {
-	body := c.Request().Body
-	buf := new(bytes.Buffer)
-
-	if _, err := io.Copy(buf, body); err != nil {
-		return nil, err
-	}
-
-	fmt.Println("request to add book:", buf)
-	c.Request().Body = io.NopCloser(bytes.NewBuffer(buf.Bytes()))
-	return buf, nil
-}
-
 // ใช้ echo.Context แทน http.ResponseWriter
 func addBook(c echo.Context) error {
 	FirstName := c.FormValue("FirstName")
 	first_name := c.FormValue("first_name")
 
 	book := new(Book)
-
-	// if _, err := logRequestBody(c); err != nil {
-	// 	return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to read request body"})
-	// }
 
 	if err := c.Bind(book); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request"})
@@ -102,13 +86,15 @@ type Shape interface {
 
 func main() {
 	e := echo.New()
+	router.UserRoute(e)
+	router.ProductRoutes(e)
 
 	// e.Use(middleware.Logger())
 	// e.Use(middleware.Recover())
 
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+	// e.GET("/", func(c echo.Context) error {
+	// 	return c.String(http.StatusOK, "Hello, World!")
+	// })
 
 	e.GET("/api/books", getBooks /* ใช้ echo.Context แทน http.ResponseWriter และ *http.Request */)
 	e.GET("/api/book/:ID", getBook /* ใช้ echo.Context แทน http.ResponseWriter และ *http.Request */)
