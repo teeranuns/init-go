@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"init/project/src/infrastructure/db"
 	router "init/project/src/infrastructure/routes"
 
 	"github.com/labstack/echo/v4"
@@ -89,12 +90,7 @@ func main() {
 	router.UserRoute(e)
 	router.ProductRoutes(e)
 
-	// e.Use(middleware.Logger())
-	// e.Use(middleware.Recover())
-
-	// e.GET("/", func(c echo.Context) error {
-	// 	return c.String(http.StatusOK, "Hello, World!")
-	// })
+	db.InitDB()
 
 	e.GET("/api/books", getBooks /* ใช้ echo.Context แทน http.ResponseWriter และ *http.Request */)
 	e.GET("/api/book/:ID", getBook /* ใช้ echo.Context แทน http.ResponseWriter และ *http.Request */)

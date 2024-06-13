@@ -1,8 +1,13 @@
-// dto/user/user_response.go
 package domain
 
-type UserResponse struct {
-	ID    int    `json:"id"`
-	Name  string `json:"name"`
-	Email string `json:"email"`
+import (
+	"gorm.io/gorm"
+)
+
+// User represents a user in the database
+type User struct {
+	gorm.Model
+	Name     string `gorm:"size:100;not null" json:"name"`
+	Email    string `gorm:"size:100;unique;not null" json:"email"`
+	Password string `gorm:"size:100;not null" json:"password"`
 }
