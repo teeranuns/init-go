@@ -1,6 +1,7 @@
 package db
 
 import (
+	domain "init/project/src/domain/user"
 	"log"
 	"os"
 
@@ -35,5 +36,7 @@ func InitDB() {
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
+
+	DB.AutoMigrate(&domain.User{})
 
 }
