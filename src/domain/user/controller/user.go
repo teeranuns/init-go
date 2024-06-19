@@ -1,7 +1,7 @@
 package user
 
 import (
-	user "init/project/src/domain/user"
+	user "init/project/src/domain/entities"
 	"net/http"
 
 	"github.com/labstack/echo/v4"

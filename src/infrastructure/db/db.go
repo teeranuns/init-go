@@ -1,7 +1,7 @@
 package db
 
 import (
-	domain "init/project/src/domain/user"
+	domain "init/project/src/domain/entities"
 	"log"
 	"os"
 

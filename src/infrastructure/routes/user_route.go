@@ -1,9 +1,9 @@
 package router
 
 import (
-	"github.com/labstack/echo/v4"
+	user "init/project/src/domain/user/controller"
 
-	user "init/project/src/interfaces/user"
+	"github.com/labstack/echo/v4"
 )
 
 func UserRoute(e *echo.Echo) {

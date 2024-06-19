@@ -4,42 +4,39 @@ start learning golang
 ## Project Structure
 
 ```
-project/
-├── domain/
-│ ├── user.go
-│ ├── product.go
-│ ├── receive.go
-├── dto/
-│ ├── user/
-│ │ ├── create_user_request.go
-│ │ ├── update_user_request.go
-│ │ ├── search_user_request.go
-│ │ ├── user_response.go
-│ ├── product/
-│ │ ├── create_product_request.go
-│ │ ├── update_product_request.go
-│ │ ├── search_product_request.go
-│ │ ├── product_response.go
-│ ├── receive/
-│ │ ├── create_receive_request.go
-│ │ ├── update_receive_request.go
-│ │ ├── search_receive_request.go
-│ │ ├── receive_response.go
-├── infrastructure/
-│ ├── router.go
-├── interfaces/
-│ ├── user_controller.go
-│ ├── product_controller.go
-│ ├── receive_controller.go
-├── repository/
-│ ├── user_repository.go
-│ ├── product_repository.go
-│ ├── receive_repository.go
-├── usecase/
-│ ├── user_usecase.go
-│ ├── product_usecase.go
-│ ├── receive_usecase.go
-├── main.go
+📂 src/
+├─ 📄 main.go
+📂 assets/
+├─ 📂 logs/
+📂 configs/
+├─ 📄 configs.go
+📂 domain/
+├─ 📂 servers/
+│  ├─ 📄 server.go
+│  ├─ 📄 handler.go
+├─ 📂 entities/
+│  ├─ 📄 users.go
+│  ├─ 📄 response.go
+├─ 📂 users/
+│  ├─ 📂 controllers/
+│  │  ├─ 📄 users_controllers.go
+│  ├─ 📂 usecases/
+│  │  ├─ 📄 users_usecases.go
+│  ├─ 📂 repositories/
+│  │  ├─ 📄 users_repositories.go
+│  ├─ 📂 models/
+│  │  ├─ 📄 users_response.go
+📂 pkg/
+├─ 📂 databases/
+│  ├─ 📂 migrations/
+│  ├─ 📄 postgresql.go
+├─ 📂 middlewares/
+├─ 📂 utils/
+│  ├─📄 connection_url_builder.go
+📂 tests/
+├─ 📂 users/
+│  ├─ 📄 users_test.go
+📄 .env
 ```
 
 ## Getting Started
