@@ -6,8 +6,9 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func UserRoute(e *echo.Echo) {
-	e.GET("/users/1234", user.GetUsers)
+func UserRoute(e *echo.Echo, prefix string, middleware echo.MiddlewareFunc) {
+	g := e.Group(prefix, middleware)
+	g.GET("/", user.GetUsers)
 
 	// e.GET("/users/:id", func(c echo.Context) error {
 	// 	id := c.Param("id")

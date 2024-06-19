@@ -6,8 +6,11 @@ import (
 	"net/http"
 	"strconv"
 
+	setup "init/project/src/domain"
 	"init/project/src/infrastructure/db"
 	router "init/project/src/infrastructure/routes"
+
+	middleware "init/project/src/middleware"
 
 	"github.com/labstack/echo/v4"
 )
@@ -86,12 +89,16 @@ type Shape interface {
 }
 
 func main() {
-	e := echo.New()
-	router.UserRoute(e)
-	router.ProductRoutes(e)
-
+	// Initialize database connection
 	db.InitDB()
 
+	setup.Initialize()
+
+	// Initialize Echo
+	e := echo.New()
+
+	// Set up routes
+	router.UserRoute(e, "/user", middleware.JWTmiddleware())
 	e.GET("/api/books", getBooks /* ใช้ echo.Context แทน http.ResponseWriter และ *http.Request */)
 	e.GET("/api/book/:ID", getBook /* ใช้ echo.Context แทน http.ResponseWriter และ *http.Request */)
 	e.POST("/api/books", addBook)
