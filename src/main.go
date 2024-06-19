@@ -10,8 +10,6 @@ import (
 	"init/project/src/infrastructure/db"
 	router "init/project/src/infrastructure/routes"
 
-	middleware "init/project/src/middleware"
-
 	"github.com/labstack/echo/v4"
 )
 
@@ -98,7 +96,7 @@ func main() {
 	e := echo.New()
 
 	// Set up routes
-	router.UserRoute(e, "/user", middleware.JWTmiddleware())
+	router.UserRoute(e, "/users")
 	e.GET("/api/books", getBooks /* ใช้ echo.Context แทน http.ResponseWriter และ *http.Request */)
 	e.GET("/api/book/:ID", getBook /* ใช้ echo.Context แทน http.ResponseWriter และ *http.Request */)
 	e.POST("/api/books", addBook)
